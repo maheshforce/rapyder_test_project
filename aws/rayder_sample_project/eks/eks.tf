@@ -43,7 +43,7 @@ module "eks" {
       desired_size           = 1
       min_size               = 1
       max_size               = 1
-      instance_type          = "t3.medium"
+      instance_type          = "t2.medium"
       subnet_ids             = data.terraform_remote_state.vpc.outputs.private_subnets
       node_security_group_id = var.node_security_group_id
       labels = {
