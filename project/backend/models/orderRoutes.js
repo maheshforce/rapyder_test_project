@@ -1,33 +1,16 @@
-const express = require('express');
-const Order = require('../models/Order');
+const express = require("express");
 const router = express.Router();
+const Order = require("../models/Order");
 
-// Place an order
-router.post('/', async (req, res) => {
-  const { products, totalAmount, user, address } = req.body;
-
-  const newOrder = new Order({
-    products,
-    totalAmount,
-    user,
-    address
-  });
-
+// Create an order
+router.post("/", async (req, res) => {
   try {
-    const order = await newOrder.save();
-    res.status(201).json(order);
+    const { name, email, quantity } = req.body;
+    const newOrder = new Order({ name, email, quantity });
+    await newOrder.save();
+    res.status(201).json({ message: "Order placed successfully" });
   } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
-
-// Get all orders (for admin)
-router.get('/', async (req, res) => {
-  try {
-    const orders = await Order.find().populate('products.product');
-    res.json(orders);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ error: "Failed to place order" });
   }
 });
 
