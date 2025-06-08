@@ -10,7 +10,7 @@ function OrderForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Call the backend to place the order
-    fetch('http://localhost:5000/api/orders', {
+    fetch('http://65.0.93.232:5000/api/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
