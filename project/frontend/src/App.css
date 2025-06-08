@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #2d6a4f;
+  color: white;
+  padding: 10px 0;
+}
+
+header .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo img {
+  width: 120px;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+}
+
+header nav ul li {
+  margin: 0 15px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.order {
+  padding: 50px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.order form input,
+.order form button {
+  padding: 10px;
+  margin: 10px;
+}

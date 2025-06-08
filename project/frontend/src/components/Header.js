@@ -1,14 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <header>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/product">Shop</Link>
-        <Link to="/cart">Cart</Link>
-      </nav>
+      <div className="navbar">
+        <div className="logo">
+          <img src="/images/logo.png" alt="Fresh Coconut Logo" />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#order">Order Now</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }
