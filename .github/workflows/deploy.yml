@@ -37,6 +37,13 @@ jobs:
       run: |
         aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
 
+    - name: Verify cluster access
+      run: |
+        kubectl get nodes
+        kubectl get ns
+
     - name: Deploy Helm chart
       run: |
-        helm upgrade --install nginx-sample ./aws/rayder_sample_project/helm -f ../aws/rayder_sample_project/helm/nginx-values.yaml
+        set -e
+        helm upgrade --install nginx-sample aws/rayder_sample_project/helm \
+          -f aws/rayder_sample_project/helm/nginx-values.yaml
