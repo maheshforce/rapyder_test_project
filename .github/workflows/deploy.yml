@@ -45,5 +45,5 @@ jobs:
     - name: Deploy Helm chart
       run: |
         set -e
-        helm upgrade --install nginx-sample aws/rayder_sample_project/helm \
+        helm install nginx-sample aws/rayder_sample_project/helm \
           -f aws/rayder_sample_project/helm/nginx-values.yaml

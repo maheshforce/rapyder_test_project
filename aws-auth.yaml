@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::556088722803:role/loki-eks-node-group-20260107084132473100000002
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+      - system:bootstrappers
+      - system:nodes
+    - rolearn: arn:aws:iam::556088722803:role/githubeksrole
+      username: github-actions
+      groups:
+      - system:masters
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
