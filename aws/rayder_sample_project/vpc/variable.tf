@@ -13,7 +13,7 @@ variable "vpc_cidr" {
 variable "availability_zones" {
   description = "List of availability zones to use."
   type        = list(string)
-  default     = ["eu-west-1a", "us-east-1b", "us-east-1c"]
+  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
 
 variable "private_subnets" {
@@ -31,7 +31,7 @@ variable "public_subnets" {
 variable "enable_nat_gateway" {
   description = "Enable NAT Gateway."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "enable_vpn_gateway" {
@@ -131,3 +131,7 @@ variable "workers_nodes_egress_cidr_blocks" {
   default     = ["0.0.0.0/0"]
 }
 
+variable "region" {
+  type = string
+  default = "us-east-1"
+}

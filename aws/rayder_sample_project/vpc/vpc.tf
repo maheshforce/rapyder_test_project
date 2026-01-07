@@ -10,7 +10,7 @@ module "vpc" {
 
   enable_nat_gateway = var.enable_nat_gateway
 
-  single_nat_gateway     = false
+  single_nat_gateway     = true
   one_nat_gateway_per_az = false
 
   private_subnet_tags = var.private_subnet_tags
@@ -21,4 +21,10 @@ module "vpc" {
   enable_dns_hostnames = true
 
   tags = var.tags
+}
+
+resource "aws_route" "attach_existing_private_rt_to_nat" {
+  route_table_id         = "rtb-081f0b3aecfae356c"
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = module.vpc.natgw_ids[0]
 }

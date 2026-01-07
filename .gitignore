@@ -1,0 +1,46 @@
+# Node / JS files (if any frontend)
+node_modules/
+dist/
+build/
+
+# Python / data files (if any scripts)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+
+# Helm
+*.tgz            # packaged helm charts
+helm/nginx-values.yaml  # optional: if you want to ignore local values (but you might want to keep it)
+
+# Kubernetes / local configs
+.kube/
+.kubectl/
+*.kubeconfig
+*.yaml~
+
+# IDEs / editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Secrets / environment files
+.env
+.env.*
