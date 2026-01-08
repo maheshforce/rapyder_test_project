@@ -24,7 +24,7 @@ module "vpc" {
 }
 
 resource "aws_route" "attach_existing_private_rt_to_nat" {
-  route_table_id         = "rtb-081f0b3aecfae356c"
+  route_table_id         = "rtb-0aaf5e0849a8d5c15"
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = module.vpc.natgw_ids[0]
 }
