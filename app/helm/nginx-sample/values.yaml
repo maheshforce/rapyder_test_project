@@ -1,0 +1,9 @@
+replicaCount: 1
+
+image:
+  repository: public.ecr.aws/nginx/nginx
+  tag: stable-perl
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
