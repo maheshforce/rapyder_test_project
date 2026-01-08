@@ -2,8 +2,8 @@ replicaCount: 1
 
 image:
   registry: docker.io
-  repository: bitnami/nginx
-  tag: 1.29.1-debian-12-r0
+  repository: nginx
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:
