@@ -62,5 +62,5 @@ jobs:
 
     - name: Deploy using Helm
       run: |
-        helm upgrade --install nginx-sample ./app/helm/nginx-sample \
+        helm upgrade --install app ./app/helm/nginx-sample \
           -f ./app/helm/nginx-values.yaml

@@ -37,7 +37,7 @@ variable "enable_nat_gateway" {
 variable "enable_vpn_gateway" {
   description = "Enable VPN Gateway."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "tags" {
