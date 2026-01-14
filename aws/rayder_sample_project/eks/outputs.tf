@@ -16,15 +16,18 @@ output "node_group_names" {
 }
 
 
-output "cluster_ca" {
-  value = module.eks.certificate_authority[0].data
+output "certificate_authority" {
+  value = module.eks.cluster_certificate_authority_data
 }
 
-output "security_groups" {
-  value = module.eks.security_groups
+
+output "cluster_security_group_id" {
+  value = module.eks.cluster_security_group_id
 }
 
-output "OIDC" {
-  value = module.eks.oidc_provider_url
+
+output "oidc_provider_url" {
+  value = module.eks.cluster_oidc_issuer_url
 }
+
 

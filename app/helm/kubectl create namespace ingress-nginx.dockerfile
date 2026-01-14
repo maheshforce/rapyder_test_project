@@ -13,3 +13,26 @@ kubectl apply -f ./app/helm/ingress/ingress.yml
 aws eks update-kubeconfig --region us-east-1 --name test-eks
 
 kubectl -n kube-system get configmap aws-auth -o yaml > auth1.yml
+
+kubectl create namespace karpenter
+kubectl create serviceaccount karpenter -n karpenter
+
+kubectl annotate serviceaccount karpenter -n karpenter \
+eks.amazonaws.com/role-arn=arn:aws:iam::556088722803:role/test-eks-karpenter-controller
+
+export KARPENTER_NAMESPACE="kube-system"
+export KARPENTER_VERSION="1.8.3" # Use the latest stable version
+
+helm upgrade --install karpenter-crd oci://public.ecr.aws/karpenter/karpenter-crd \
+  --version "${KARPENTER_VERSION}" \
+  --namespace "${KARPENTER_NAMESPACE}" \
+  --create-namespace
+
+
+
+
+
+  helm upgrade --install karpenter oci://public.ecr.aws/karpenter/karpenter \
+  --version "1.8.3" \
+  --namespace "kube-system" \
+  -f ./app/helm/karpenter/values.yaml

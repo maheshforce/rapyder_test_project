@@ -50,24 +50,19 @@ variable "tags" {
   }
 }
 
+
 variable "private_subnet_tags" {
-  description = "Tags for private subnets"
+  description = "Tags for private subnets override"
   type        = map(string)
   default     = {
-    "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
-    "karpenter.sh/discovery/${var.cluster_name}" = "owned"
-
+    "karpenter.sh/discovery/test-eks" = "test-eks"
   }
 }
-
 variable "public_subnet_tags" {
   description = "Tags for public subnets"
   type        = map(string)
   default     = {
     "kubernetes.io/role/elb" = "1"
-    "kubernetes.io/cluster/${module.output.var.cluster_name}" = "shared"
-    "karpenter.sh/discovery/${module.output.var.cluster_name}" = "owned"
   }
 }
 

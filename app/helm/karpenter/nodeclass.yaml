@@ -1,0 +1,23 @@
+apiVersion: karpenter.k8s.aws/v1
+kind: EC2NodeClass
+metadata:
+  name: app-infra
+spec:
+  # 1. ADD THIS REQUIRED SECTION
+  amiSelectorTerms:
+    - alias: al2023@latest # Automatically uses the latest EKS-optimized AL2023 AMI
+    
+  # 2. Existing configuration
+  role: "test-eks-karpenter-node-role" 
+  
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "test-eks"
+  securityGroupSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: "test-eks"
+  
+  amiFamily: AL2023
+  
+  tags:
+    Intent: "ApplicationWorkload"

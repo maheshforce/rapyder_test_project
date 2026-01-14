@@ -1,15 +1,17 @@
-resource "aws_iam_policy_document" "karpenter_trust" {
+data "aws_iam_policy_document" "karpenter_assume_role" {
   statement {
-    actions = ["sts:AssumeRoleWithWebIdentity"]
+    effect = "Allow"
 
     principals {
       type        = "Federated"
       identifiers = [module.eks.oidc_provider_arn]
     }
 
+    actions = ["sts:AssumeRoleWithWebIdentity"]
+
     condition {
       test     = "StringEquals"
-      variable = "${replace(module.eks.oidc_provider, "https://", "")}:sub"
+      variable = "${module.eks.oidc_provider}:sub"
       values   = ["system:serviceaccount:karpenter:karpenter"]
     }
   }

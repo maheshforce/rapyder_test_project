@@ -1,0 +1,40 @@
+# Service Account configuration for IRSA
+serviceAccount:
+  create: true
+  name: karpenter
+  annotations:
+    # Ensure this matches the IAM Role created for Karpenter 1.x
+    eks.amazonaws.com/role-arn: arn:aws:iam::556088722803:role/test-eks-karpenter-controller
+
+# Node Selection: Force Karpenter to run on "system" nodes
+nodeSelector:
+  role: system
+
+# Tolerations: Add this if your "system" nodes have taints
+tolerations:
+  - key: "role"
+    operator: "Equal"
+    value: "system"
+    effect: "NoSchedule"
+
+# Karpenter Controller resource allocation
+controller:
+  resources:
+    requests:
+      cpu: 1
+      memory: 1Gi
+    limits:
+      cpu: 1
+      memory: 1Gi
+
+# AWS-specific settings
+settings:
+  clusterName: test-eks
+  # For 1.x, if not using SQS, omit or use empty string
+  interruptionQueue: ""
+
+# Required because you installed the karpenter-crd chart separately
+skipCrds: true
+
+# Set to 1 for testing, 2 for production HA
+replicas: 1
