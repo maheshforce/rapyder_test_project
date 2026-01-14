@@ -16,3 +16,7 @@ resources:
   limits:
     cpu: 200m
     memory: 256Mi
+
+# Add this block to target your Karpenter nodes
+nodeSelector:
+  role: app
