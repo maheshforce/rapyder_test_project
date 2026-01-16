@@ -10,7 +10,7 @@ module "vpc" {
 
   enable_nat_gateway = var.enable_nat_gateway
 
-  single_nat_gateway     = false
+  single_nat_gateway     = true
   one_nat_gateway_per_az = false
 
   private_subnet_tags = var.private_subnet_tags

@@ -7,3 +7,22 @@ image:
 
 service:
   type: ClusterIP
+
+# ✅ Node selection
+nodeSelector:
+  workload: app   # Must match your Karpenter NodePool label
+  
+tolerations:
+  - key: "spot"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
+
+# ✅ Resource requests & limits
+resources:
+  requests:
+    cpu: "100m"       # Minimum CPU guaranteed
+    memory: "128Mi"   # Minimum memory guaranteed
+  limits:
+    cpu: "250m"       # Max CPU pod can use
+    memory: "256Mi"   # Max memory pod can use

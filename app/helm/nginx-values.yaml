@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 40
 
 image:
   repository: 556088722803.dkr.ecr.us-east-1.amazonaws.com/my-nginx
@@ -19,4 +19,4 @@ resources:
 
 # Add this block to target your Karpenter nodes
 nodeSelector:
-  role: app
+  Name: system

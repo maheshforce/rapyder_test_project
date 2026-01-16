@@ -4,6 +4,10 @@ helm repo update
 helm install ingress-nginx ingress-nginx/ingress-nginx \
   --namespace ingress-nginx
 
+  helm install ingress-nginx ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx \
+  --set controller.nodeSelector.role=system
+  
 kubectl apply -f ./app/helm/ingress/ingress.yml
 
 helm install app ./app/helm/nginx-sample/ -f ./app/helm/nginx-values.yaml
@@ -14,14 +18,7 @@ aws eks update-kubeconfig --region us-east-1 --name test-eks
 
 kubectl -n kube-system get configmap aws-auth -o yaml > auth1.yml
 
-kubectl create namespace karpenter
-kubectl create serviceaccount karpenter -n karpenter
 
-kubectl annotate serviceaccount karpenter -n karpenter \
-eks.amazonaws.com/role-arn=arn:aws:iam::556088722803:role/test-eks-karpenter-controller
-
-export KARPENTER_NAMESPACE="kube-system"
-export KARPENTER_VERSION="1.8.3" # Use the latest stable version
 
 helm upgrade --install karpenter-crd oci://public.ecr.aws/karpenter/karpenter-crd \
   --version "${KARPENTER_VERSION}" \

@@ -1,5 +1,0 @@
-InstanceId,Platform,InstanceType,State,PrivateIpAddress,PublicIpAddress,SecurityGroups,CIDRs
-i-065a08d65e5355fb1,Linux/UNIX,t2.medium,stopped,10.0.0.73,N/A,,sg-0d7737440bc938983
-i-072a5c7b02c0fc737,Linux/UNIX,t2.micro,stopped,10.0.12.103,N/A,,sg-01620403a4d45174c
-i-0205e999b9fbaf1ca,Linux/UNIX,t2.medium,stopped,10.0.16.68,13.203.84.139,,sg-01c9a63b5d203f260
-i-008194da446f5427c,Linux/UNIX,t2.medium,stopped,10.0.29.151,65.1.25.48,,sg-01c9a63b5d203f260

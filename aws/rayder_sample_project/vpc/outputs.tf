@@ -15,15 +15,15 @@ output "private_subnets" {
 }
 
 #Security Group Outputs
-output "control_plane_sg_id" {
-  description = "The security group ID of the EKS control plane"
-  value       = module.eks_control_plane_sg.security_group_id
-}
+# output "control_plane_sg_id" {
+#   description = "The security group ID of the EKS control plane"
+#   value       = module.vpc.eks_control_plane_sg_id
+# }
 
-output "worker_nodes_sg_id" {
-  description = "The security group ID of the EKS worker nodes"
-  value       = module.eks_worker_nodes_sg.security_group_id
-}
+# output "worker_nodes_sg_id" {
+#   description = "The security group ID of the EKS worker nodes"
+#   value       = module.vpc.eks_worker_nodes_sg_id
+# }
 
 output "internet_gateway_id" {
   value = module.vpc.igw_id
@@ -31,5 +31,6 @@ output "internet_gateway_id" {
 
 output "private_route_table_ids" {
   value = module.vpc.private_route_table_ids
-  
+
 }
+

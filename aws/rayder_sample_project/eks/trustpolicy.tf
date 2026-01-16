@@ -9,10 +9,18 @@ data "aws_iam_policy_document" "karpenter_assume_role" {
 
     actions = ["sts:AssumeRoleWithWebIdentity"]
 
+    # Validates the specific ServiceAccount (Namespace:Name)
     condition {
       test     = "StringEquals"
       variable = "${module.eks.oidc_provider}:sub"
-      values   = ["system:serviceaccount:karpenter:karpenter"]
+      values   = ["system:serviceaccount:kube-system:karpenter"]
+    }
+
+    # Validates the audience (Standard for EKS OIDC)
+    condition {
+      test     = "StringEquals"
+      variable = "${module.eks.oidc_provider}:aud"
+      values   = ["sts.amazonaws.com"]
     }
   }
 }

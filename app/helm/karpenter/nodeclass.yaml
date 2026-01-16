@@ -21,3 +21,5 @@ spec:
   
   tags:
     Intent: "ApplicationWorkload"
+    workload: "app"
+    role: "app"

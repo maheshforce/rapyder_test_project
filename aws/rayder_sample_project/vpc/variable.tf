@@ -37,7 +37,7 @@ variable "enable_nat_gateway" {
 variable "enable_vpn_gateway" {
   description = "Enable VPN Gateway."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "tags" {
@@ -50,18 +50,19 @@ variable "tags" {
   }
 }
 
-
 variable "private_subnet_tags" {
-  description = "Tags for private subnets override"
+  description = "Additional tags for private subnets"
   type        = map(string)
   default     = {
-    "karpenter.sh/discovery/test-eks" = "test-eks"
+    "kubernetes.io/role/internal-elb" = "1",
+    "karpenter.sh/discovery" = "test-eks"
   }
 }
+
 variable "public_subnet_tags" {
   description = "Tags for public subnets"
   type        = map(string)
-  default     = {
+  default = {
     "kubernetes.io/role/elb" = "1"
   }
 }
@@ -95,9 +96,8 @@ variable "worker_nodes_sg_name" {
   description = "Name of the security group for EKS worker nodes"
   type        = string
   default     = "eks-worker-nodes-sg"
+
 }
-
-
 
 variable "worker_nodes_ingress_cidr_blocks" {
   description = "Allowed CIDR blocks for ingress traffic to worker nodes"
@@ -113,7 +113,7 @@ variable "ssh_port" {
 
 variable "worker_nodes_self_ports" {
   description = "Port range for self-communication within worker nodes"
-  type        = object({
+  type = object({
     from_port = number
     to_port   = number
     protocol  = string
@@ -132,6 +132,6 @@ variable "workers_nodes_egress_cidr_blocks" {
 }
 
 variable "region" {
-  type = string
+  type    = string
   default = "us-east-1"
 }
