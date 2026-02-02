@@ -16,3 +16,8 @@ phases:
     commands:
       - docker tag my-nginx:latest 556088722803.dkr.ecr.us-east-1.amazonaws.com/my-nginx:latest
       - docker push 556088722803.dkr.ecr.us-east-1.amazonaws.com/my-nginx:latest
+      - - printf '[{"name":"my-nginx","imageUri":"%s"}]' 556088722803.dkr.ecr.us-east-1.amazonaws.com/my-nginx:latest > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json
