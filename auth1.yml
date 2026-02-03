@@ -20,4 +20,4 @@ data:
     - rolearn: arn:aws:iam::556088722803:role/githubeksrole
       username: github-actions
       groups:
-        - system:masters.
+        - system:masters
