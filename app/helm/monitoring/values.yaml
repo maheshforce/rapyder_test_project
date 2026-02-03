@@ -1,0 +1,52 @@
+grafana:
+  enabled: true
+  adminUser: admin
+  adminPassword: admin123
+
+  grafana.ini:
+    server:
+      root_url: "%(protocol)s://%(domain)s/grafana/"
+      serve_from_sub_path: true
+
+  service:
+    type: ClusterIP
+
+  dashboards:
+    default:
+      myapp-dashboard:
+        json: |
+          {
+            "title": "MyApp Production Metrics",
+            "panels": [
+              {
+                "type": "graph",
+                "title": "HTTP Requests",
+                "targets": [
+                  {
+                    "expr": "rate(http_requests_total[1m])",
+                    "legendFormat": "{{method}} {{status}}"
+                  }
+                ]
+              }
+            ]
+          }
+
+prometheus:
+  enabled: true
+  prometheusSpec:
+    routePrefix: /prometheus
+    externalUrl: /prometheus
+    resources:
+      limits:
+        cpu: "2"
+        memory: "4Gi"
+      requests:
+        cpu: "500m"
+        memory: "1Gi"
+    storageSpec: {}
+
+alertmanager:
+  enabled: true
+  alertmanagerSpec:
+    routePrefix: /alertmanager
+    externalUrl: /alertmanager

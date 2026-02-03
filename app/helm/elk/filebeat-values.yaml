@@ -1,0 +1,41 @@
+daemonset:
+  enabled: true
+  hostNetwork: true
+  hostPID: true
+
+# Collect logs from all nodes
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/*.log
+      - /var/log/containers/*.log
+      - /var/log/pods/*.log
+    processors:
+      - add_kubernetes_metadata:
+          host: ${NODE_NAME}
+          matchers:
+            - logs_path:
+                logs_path: "/var/log/containers/"
+
+# Send logs to Elasticsearch
+output.elasticsearch:
+  hosts: ["https://elasticsearch-master:9200"]
+  protocol: "https"
+  username: "elastic"   # or dedicated user
+  password: "UKut4lOGZVwOKS2C"
+  ssl.verificationMode: "none"
+
+# Enable autodiscover for pods
+filebeat.autodiscover:
+  providers:
+    - type: kubernetes
+      hints.enabled: true
+      templates:
+        - condition:
+            equals:
+              kubernetes.namespace: "kube-system"
+          config:
+            - type: container
+              paths:
+                - /var/log/containers/*-${data.kubernetes.container.id}.log

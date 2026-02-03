@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: arn:aws:iam::556088722803:role/system-eks-node-group-20260116105748517400000001
+    - rolearn: arn:aws:iam::556088722803:role/system-eks-node-group-20260127043309714900000002
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
@@ -16,8 +16,3 @@ data:
       groups:
         - system:bootstrappers
         - system:nodes
-
-    - rolearn: arn:aws:iam::556088722803:role/githubeksrole
-      username: github-actions
-      groups:
-        - system:masters

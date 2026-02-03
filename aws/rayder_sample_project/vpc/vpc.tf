@@ -23,8 +23,8 @@ module "vpc" {
   tags = var.tags
 }
 
-resource "aws_route" "attach_existing_private_rt_to_nat" {
-  route_table_id         = "rtb-0a587964ad6488f59"
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = module.vpc.natgw_ids[0]
-}
+# resource "aws_route" "attach_existing_private_rt_to_nat" {
+#   route_table_id         = "rtb-0a587964ad6488f59"
+#   destination_cidr_block = "0.0.0.0/0"
+#   nat_gateway_id         = module.vpc.natgw_ids[0]
+# }

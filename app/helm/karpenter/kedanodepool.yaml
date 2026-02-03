@@ -1,26 +1,29 @@
 apiVersion: karpenter.sh/v1
 kind: NodePool
 metadata:
-  name: ondemand-t3-small
+  name: keda-spot-nodepool-t3
 spec:
   weight: 100
   limits:
-    cpu: 30
-    memory: 60Gi
+    cpu: 4
+    memory: 8Gi
   template:
+    metadata:
+      labels:
+        kubernetes.io/os: linux   # Must match KEDA pods
+        workload: system          # Must match KEDA pods
     spec:
       nodeClassRef:
         group: karpenter.k8s.aws
         kind: EC2NodeClass
-        name: app-infra
+        name: system-infra
       requirements:
         - key: "karpenter.sh/capacity-type"
           operator: In
-          values: ["on-demand"]
+          values: ["spot"]
         - key: "node.kubernetes.io/instance-type"
           operator: In
-          values: ["t3.small", "t3.micro"]
+          values: ["t3.medium", "t3.large"]
   disruption:
     consolidationPolicy: WhenEmptyOrUnderutilized
     consolidateAfter: 1m
-

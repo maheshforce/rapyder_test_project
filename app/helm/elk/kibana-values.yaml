@@ -1,0 +1,37 @@
+elasticsearchHosts: "https://elasticsearch-master:9200"
+
+elasticsearch:
+  serviceAccountToken: "AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS10b2tlbjp1TE5RejNxMFJlcUY4U2NfZ3I2dnBR"
+  ssl:
+    verificationMode: "none"
+
+# ❗ Disable ALL pre-install / post-install token jobs
+preinstall:
+  createToken: false
+postinstall:
+  createToken: false
+
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "256Mi"
+  limits:
+    cpu: "250m"
+    memory: "512Mi"
+
+xpack:
+  security:
+    enabled: true
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  hosts:
+    - host: ""
+      paths:
+        - path: /
+          pathType: Prefix

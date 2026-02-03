@@ -1,0 +1,34 @@
+# keda-values.yaml
+
+global:
+  nodeSelector:
+    workload: system
+    kubernetes.io/os: linux
+  tolerations:
+    - key: workload
+      operator: Equal
+      value: system
+      effect: NoSchedule
+
+operator:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+metricsServer:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 300m
+      memory: 512Mi
+
+admissionWebhooks:
+  replicas: 1

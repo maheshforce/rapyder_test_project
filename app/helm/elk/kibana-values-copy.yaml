@@ -1,0 +1,45 @@
+replicas: 1
+
+elasticsearchHosts: "https://elasticsearch-master:9200"
+
+elasticsearch:
+  serviceAccountToken:
+    enabled: false
+
+preinstall:
+  createToken: false
+postinstall:
+  createToken: false
+
+kibanaConfig:
+  kibana.yml: |
+    server.host: "0.0.0.0"
+    elasticsearch.hosts: ["https://elasticsearch-master:9200"]
+
+    # 🔐 Service Token Auth
+    elasticsearch.serviceAccountToken: "AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS10b2tlbjpIMkNLX0pKNFE0MkRRRnRnQ3pSTG9R"
+
+    # 🔑 Fix Encrypted Saved Objects error
+    xpack.encryptedSavedObjects.encryptionKey: "u9R7!f2z@8Lq1#4ePwQx3%6vYhBnRm5D"
+
+    # SSL
+    elasticsearch.ssl.verificationMode: none
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  hosts:
+    - host: ""
+      paths:
+        - path: /
+          pathType: Prefix

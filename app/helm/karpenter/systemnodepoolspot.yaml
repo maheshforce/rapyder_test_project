@@ -1,0 +1,32 @@
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: system-spot-t3
+spec:
+  weight: 100                 # Prefer this pool for matching pods
+  limits:
+    cpu: 16
+    memory: 32Gi
+  template:
+    metadata:
+      labels:
+        workload: "system"    # <-- CRITICAL for nodeSelector
+    spec:
+      taints:
+        - key: "workload"     # <-- Protect this pool
+          value: "system"
+          effect: NoSchedule
+      nodeClassRef:
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
+        name: system-infra
+      requirements:
+        - key: "karpenter.sh/capacity-type"
+          operator: In
+          values: ["spot"]
+        - key: "node.kubernetes.io/instance-type"
+          operator: In
+          values: ["t3.medium", "t3.large"]
+  disruption:
+    consolidationPolicy: WhenEmptyOrUnderutilized
+    consolidateAfter: 1m

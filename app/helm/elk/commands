@@ -1,0 +1,24 @@
+helm repo add elastic https://helm.elastic.co
+helm repo update
+
+helm install elasticsearch elastic/elasticsearch \
+  -n logging \
+  --set replicas=1 \
+  --set persistence.enabled=false \
+  --set resources.requests.cpu=100m \
+  --set resources.requests.memory=512Mi \
+  --set resources.limits.cpu=500m \
+  --set resources.limits.memory=1Gi
+
+helm install kibana elastic/kibana \
+  -n logging \
+  --set elasticsearchHosts="http://elasticsearch-master:9200" \
+  --set preinstall.enabled=false \
+  --set kibana.serviceAccount.create=false \
+  --set elasticsearch.ssl.enabled=false \
+  --set resources.requests.cpu=100m \
+  --set resources.requests.memory=256Mi
+
+
+kubectl delete job -n logging -l app=kibana
+kubectl delete pod -n logging --field-selector=status.phase=Failed

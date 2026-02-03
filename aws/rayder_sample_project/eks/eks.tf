@@ -1,7 +1,7 @@
 data "aws_iam_policy" "ssm_managed" {
   arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
-data "aws_iam_policy" "ssm_managed_READONLY" {
+data "aws_iam_policy" "ssm_managed_readonly" {
   arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
 }
 
