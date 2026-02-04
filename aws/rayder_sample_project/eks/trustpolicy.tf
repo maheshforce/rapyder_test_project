@@ -15,7 +15,6 @@ data "aws_iam_policy_document" "karpenter_assume_role" {
       variable = "${module.eks.oidc_provider}:sub"
       values   = ["system:serviceaccount:kube-system:karpenter"]
     }
-
     # Validates the audience (Standard for EKS OIDC)
     condition {
       test     = "StringEquals"

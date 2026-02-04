@@ -107,7 +107,7 @@ module "eks" {
       # Attach SSM Managed Policy here
       additional_iam_policies = [
         data.aws_iam_policy.ssm_managed.arn,
-        data.aws_iam_policy.ssm_managed_READONLY.arn,
+        data.aws_iam_policy.ssm_managed_readonly.arn,
         data.aws_iam_policy.ssm_ec2.arn,
         data.aws_iam_policy.ssm_full.arn
       ]

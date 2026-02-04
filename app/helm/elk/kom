@@ -1,0 +1,9 @@
+kubectl create namespace elk
+
+helm repo add elastic https://helm.elastic.co
+helm repo update
+
+helm install elasticsearch elastic/elasticsearch -n elk -f values-elasticsearch.yml
+
+kubectl exec -n logging -it elasticsearch-master-0 -- \
+  //usr/share/elasticsearch/bin/elasticsearch-service-tokens create elastic/kibana kibana-token

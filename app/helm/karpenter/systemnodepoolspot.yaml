@@ -12,10 +12,7 @@ spec:
       labels:
         workload: "system"    # <-- CRITICAL for nodeSelector
     spec:
-      taints:
-        - key: "workload"     # <-- Protect this pool
-          value: "system"
-          effect: NoSchedule
+      taints: {}
       nodeClassRef:
         group: karpenter.k8s.aws
         kind: EC2NodeClass

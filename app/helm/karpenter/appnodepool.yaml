@@ -8,6 +8,9 @@ spec:
     cpu: 30
     memory: 60Gi
   template:
+    metadata:
+      labels:
+        role: app
     spec:
       nodeClassRef:
         group: karpenter.k8s.aws
