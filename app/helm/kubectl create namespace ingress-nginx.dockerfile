@@ -30,7 +30,7 @@ helm upgrade --install karpenter oci://public.ecr.aws/karpenter/karpenter \
   --namespace "kube-system" \
   -f ./app/helm/karpenter/values.yaml
 
-  kubectl rollout restart deployment karpenter -n kube-system
+kubectl rollout restart deployment karpenter -n kube-system
 kubectl rollout restart deployment karpenter -n kube-system
 
 
@@ -39,7 +39,7 @@ kubectl rollout restart deployment karpenter -n kube-system
 kubectl apply -f ./app/helm/karpenter/Appnodeclass.yaml
 kubectl get EC2NodeClass
 
-kubectl apply -f ./app/helm/karpenter/appnodepool.yaml
+kubectl apply -f ./app/helm/karpenter/appnodepo ol.yaml
 kubectl get Nodepool
 
 
@@ -79,8 +79,8 @@ kubectl logs ingress-nginx-controller-5bfcb7d69d-752bn -n ingress-nginx
   --namespace "kube-system" \
   -f ./app/helm/karpenter/values.yaml
 
+  kubectl apply -f ./app/helm/karpenter/appnodeclass.yaml
   kubectl apply -f ./app/helm/karpenter/appnodepool.yaml
-  kubectl apply -f ./app/helm/karpenter/nodeclass.yaml
 
 kubectl apply -f ./app/helm/KEDA/cpu-scaledobject.yaml
 

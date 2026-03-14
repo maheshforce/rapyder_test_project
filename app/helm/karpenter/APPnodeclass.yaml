@@ -8,7 +8,7 @@ spec:
   amiSelectorTerms:
     - alias: al2023@latest
 
-  role: system-eks-node-group-20260204045600896200000002
+  role: system-eks-node-group-20260226064732064800000003
 
   subnetSelectorTerms:
     - tags:

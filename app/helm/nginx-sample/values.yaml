@@ -12,11 +12,7 @@ service:
 nodeSelector:
   workload: app   # Must match your Karpenter NodePool label
   
-tolerations:
-  - key: "spot"
-    operator: "Equal"
-    value: "true"
-    effect: "NoSchedule"
+tolerations: []
 
 # ✅ Resource requests & limits
 resources:

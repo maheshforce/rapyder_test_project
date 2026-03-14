@@ -1,0 +1,33 @@
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: ondemand-t3-small
+spec:
+  weight: 100
+  limits:
+    cpu: 30
+    memory: 60Gi
+  template:
+    metadata:
+      labels:
+        role: monitoring
+    spec:
+      taints:
+        - key: "workload"
+          value: "monitoring"
+          effect: "NoSchedule"
+      nodeClassRef:
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
+        name: monitoring
+      requirements:
+        - key: "karpenter.sh/capacity-type"
+          operator: In
+          values: ["on-demand"]
+        - key: "node.kubernetes.io/instance-type"
+          operator: In
+          values: ["t3.medium", "t3.micro"]
+  disruption:
+    consolidationPolicy: WhenEmptyOrUnderutilized
+    consolidateAfter: 1m
+

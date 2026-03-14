@@ -1,0 +1,19 @@
+controller:
+  serviceAccount:
+    create: true
+    name: ebs-csi-controller-sa
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::556088722803:role/AmazonEKS_EBS_CSI_DriverRole
+
+node:
+  tolerateAllTaints: true
+
+storageClasses:
+  - name: ebs-gp3-immediate
+    annotations:
+      storageclass.kubernetes.io/is-default-class: "false"
+    volumeBindingMode: Immediate
+    reclaimPolicy: Retain
+    allowVolumeExpansion: true
+    parameters:
+      type: gp3

@@ -12,6 +12,10 @@ spec:
       labels:
         role: app
     spec:
+      taint:
+        - key: "workload"
+          value: "app"
+          effect: "NoSchedule"
       nodeClassRef:
         group: karpenter.k8s.aws
         kind: EC2NodeClass
