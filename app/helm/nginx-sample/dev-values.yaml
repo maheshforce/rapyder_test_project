@@ -1,4 +1,4 @@
-replicaCount: 4
+replicaCount: 5
 
 image:
   repository: public.ecr.aws/nginx/nginx
