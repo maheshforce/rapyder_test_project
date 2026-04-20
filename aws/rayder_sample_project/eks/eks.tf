@@ -86,6 +86,7 @@ module "eks" {
       max_size       = 3
       desired_size   = 1
       labels         = { role = "system" }
+      ami_type = "AL2_x86_64"
 
       block_device_mappings = {
         xvda = {

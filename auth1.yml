@@ -5,13 +5,13 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: arn:aws:iam::556088722803:role/system-eks-node-group-20260116105748517400000001
+    - rolearn: arn:aws:iam::510844691301:role/system-eks-node-group-20260420051356055000000003
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
         - system:nodes
 
-    - rolearn: arn:aws:iam::556088722803:role/test-eks-karpenter-node-role
+    - rolearn: arn:aws:iam::510844691301:role/test-eks-karpenter-node-role
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers

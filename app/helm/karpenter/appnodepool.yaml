@@ -8,6 +8,9 @@ spec:
     cpu: 2
     memory: 4Gi
   template:
+    metadata:
+      labels:
+        workload: app-infra
     spec:
       nodeClassRef:
         group: karpenter.k8s.aws

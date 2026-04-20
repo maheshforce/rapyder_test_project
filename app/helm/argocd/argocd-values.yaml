@@ -1,0 +1,47 @@
+global:
+  nodeSelector:
+    workload: app-infra
+
+  tolerations:
+    - key: "node.kubernetes.io/instance-type"
+      operator: "Exists"
+      effect: "NoSchedule"
+
+  affinity:
+    nodeAffinity:
+      type: hard
+      matchExpressions:
+        - key: workload
+          operator: In
+          values:
+            - app-infra
+
+server:
+  nodeSelector:
+    workload: app-infra
+  ingress:
+    enabled: false
+    ingressClassName: nginx
+    path: /
+    pathType: Prefix
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+
+repoServer:
+  nodeSelector:
+    workload: app-infra
+
+controller:
+  nodeSelector:
+    workload: app-infra
+
+applicationSet:
+  nodeSelector:
+    workload: app-infra
+
+configs:
+  cm:
+    url: http://a8f25cb36f4584452a14a5540c15adaa-458773782.us-east-1.elb.amazonaws.com
+  params:
+    server.insecure: true
+    server.basehref: /

@@ -1,0 +1,10 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: nginx-warehouse
+  namespace: demo   # 👈 MUST match project name
+spec:
+  subscriptions:
+    - git:
+        repoURL: https://github.com/maheshforce/rapyder_test_project.git
+        branch: main

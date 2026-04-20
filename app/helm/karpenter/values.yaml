@@ -4,7 +4,7 @@ serviceAccount:
   name: karpenter
   annotations:
     # Ensure this matches the IAM Role created for Karpenter 1.x
-    eks.amazonaws.com/role-arn: arn:aws:iam::556088722803:role/test-eks-karpenter-controller
+    eks.amazonaws.com/role-arn: arn:aws:iam::510844691301:role/test-eks-karpenter-controller
 
 # Node Selection: Force Karpenter to run on "system" nodes
 nodeSelector:
