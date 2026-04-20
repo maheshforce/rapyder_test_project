@@ -8,11 +8,11 @@ spec:
 
   source:
     repoURL: https://github.com/maheshforce/rapyder_test_project.git
-    targetRevision: main
+    targetRevision: dev
     path: app/helm/nginx-sample
     helm:
       valueFiles:
-        - values.yaml   # optional if exists
+        - dev-values.yaml   # optional if exists
 
   destination:
     server: https://kubernetes.default.svc
