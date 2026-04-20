@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: https://github.com/maheshforce/rapyder_test_project.git
-    targetRevision: dev
+    targetRevision: qa
     path: app/helm/nginx-sample
     helm:
       valueFiles:
