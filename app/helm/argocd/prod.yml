@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-qa
+  name: nginx-sample
   namespace: argocd
 spec:
   project: default
@@ -12,7 +12,7 @@ spec:
     path: app/helm/nginx-sample
     helm:
       valueFiles:
-        - qa-values.yaml   # optional if exists
+        - values.yaml   # optional if exists
 
   destination:
     server: https://kubernetes.default.svc

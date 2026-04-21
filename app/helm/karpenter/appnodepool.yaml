@@ -5,8 +5,8 @@ metadata:
 spec:
   weight: 100
   limits:
-    cpu: 2
-    memory: 4Gi
+    cpu: 20
+    memory: 40Gi
   template:
     metadata:
       labels:
@@ -22,7 +22,7 @@ spec:
           values: ["on-demand"]
         - key: "node.kubernetes.io/instance-type"
           operator: In
-          values: ["t3.small"]
+          values: ["t3.small", "t3.medium"]
   disruption:
     consolidationPolicy: WhenEmptyOrUnderutilized
     consolidateAfter: 1m

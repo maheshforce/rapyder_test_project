@@ -41,7 +41,7 @@ applicationSet:
 
 configs:
   cm:
-    url: http://a8f25cb36f4584452a14a5540c15adaa-458773782.us-east-1.elb.amazonaws.com
+    url: http://a76395855ddc34bee82132a8026b25f5-1988455097.us-east-1.elb.amazonaws.com
   params:
     server.insecure: true
     server.basehref: /

@@ -33,3 +33,10 @@ helm upgrade --install karpenter-crd oci://public.ecr.aws/karpenter/karpenter-cr
   --version "1.8.3" \
   --namespace "kube-system" \
   -f ./app/helm/karpenter/values.yaml
+
+  kubectl apply -f app/helm/karpenter/nodeclass.yaml 
+  kubectl apply -f app/helm/karpenter/appnodepool.yaml
+
+
+
+  helm install argocd argo/argo-cd -n argocd -f ./app/helm/argocd/argocd-values.yaml

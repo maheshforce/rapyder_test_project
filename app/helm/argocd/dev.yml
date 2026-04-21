@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-sample
+  name: nginx-dev
   namespace: argocd
 spec:
   project: default
 
   source:
     repoURL: https://github.com/maheshforce/rapyder_test_project.git
-    targetRevision: dev
+    targetRevision: main
     path: app/helm/nginx-sample
     helm:
       valueFiles:
