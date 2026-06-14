@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: 556088722803.dkr.ecr.us-east-1.amazonaws.com/my-nginx
+  repository: mahesh4597/nginx
   tag: latest
   pullPolicy: IfNotPresent
 
@@ -16,7 +16,3 @@ resources:
   limits:
     cpu: 200m
     memory: 256Mi
-
-# Add this block to target your Karpenter nodes
-nodeSelector:
-  Name: system
